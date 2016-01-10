@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+</head>
+
+<body>
+
+	<div th:fragment="newProduct">
+
+		<!-- BEGIN CONTENT -->
+<div class="page-content-wrapper">
+	<!-- BEGIN CONTENT BODY -->
+<div class="page-content">
+	<!-- BEGIN PAGE HEADER-->
+<!-- BEGIN THEME PANEL -->
+
+<!-- END THEME PANEL -->
+<!-- BEGIN PAGE BAR -->
+<div class="page-bar">
+	<ul class="page-breadcrumb">
+		<li><a href="index.html">Products</a> <i class="fa fa-circle"></i>
+		</li>
+		<li><span>Create Product</span></li>
+	</ul>
+	<div class="page-toolbar">
+		<div class="btn-group pull-right">
+			<button type="button"
+				class="btn green btn-sm btn-outline dropdown-toggle"
+				data-toggle="dropdown">
+				Actions <i class="fa fa-angle-down"></i>
+			</button>
+			<ul class="dropdown-menu pull-right" role="menu">
+				<li><a href="#"> <i class="icon-bell"></i> Action
+				</a></li>
+				<li><a href="#"> <i class="icon-shield"></i> Another
+						action
+				</a></li>
+				<li><a href="#"> <i class="icon-user"></i> Something
+						else here
+				</a></li>
+				<li class="divider"></li>
+				<li><a href="#"> <i class="icon-bag"></i> Separated
+						link
+				</a></li>
+			</ul>
+		</div>
+	</div>
+</div>
+<!-- END PAGE BAR -->
+<!-- END PAGE HEADER-->
+<div class="row">
+
+	<!-- START OF FORM -->
+<div class="tab-pane" id="productFormLoad">
+	<div class="portlet box blue">
+		<div class="portlet-title">
+			<div class="caption">
+				<i class="fa fa-gift"></i>Form Sample
+			</div>
+			<div class="tools">
+				<a href="javascript:;" class="collapse"> </a> <a
+					href="#portlet-config" data-toggle="modal" class="config">
+				</a> <a href="javascript:;" class="reload"> </a> <a
+					href="javascript:;" class="remove"> </a>
+			</div>
+		</div>
+	<div class="portlet-body form">
+	<!-- BEGIN FORM-->
+	<form class="horizontal-form" th:object="${product}"
+		id="productForm" th:action="@{/product}" method="post">
+			
+		<input type="hidden" th:field="*{id}"/>	
+			
+		<div class="form-body">
+			<h3 class="form-section">Product Info</h3>
+			<div class="row">
+			
+			<div class="alert alert-danger display-hide">
+                 <button class="close" data-close="alert"></button> You have some form errors. Please check below. </div>
+			
+			<div class="alert alert-success display-hide">
+				 <button class="close" data-close="alert"></button> Your form validation is successful! </div>
+			
+				<div class="col-md-6">
+					<div class="form-group">
+						<label class="control-label">Code Product
+						 <span class="required"></span> </label> 
+						  <input type="text" id="codeProduct" class="form-control"
+							     th:field="*{codProduct}" name="codeProduct" data-required="1"
+							     placeholder="Put code product" />
+					</div>
+				</div>
+				<!--/span-->
+				<div class="col-md-6">
+					<div class="form-group">
+						<label class="control-label">Name Product
+                         <span class="required"></span> </label> 
+						  <input type="text" id="nameProduct" class="form-control" name="nameProduct"
+							     th:field="*{nameProduct}" placeholder="Put name product" />
+					</div>
+				</div>
+				<!--/span-->
+			</div>
+			<!--/row-->
+			<div class="row">
+				<div class="col-md-6">
+					<div class="form-group">
+						<label class="control-label">Description
+						 <span class="required"></span> </label> 
+						  <input type="text" id="description" class="form-control" name="descProduct"
+							     th:field="*{descProduct}" placeholder="Insert the description" />
+					</div>
+				</div>
+				<!--/span-->
+				<div class="col-md-6">
+					<div class="form-group">
+						<label class="control-label">Price
+						 <span class="required"></span> </label>
+						  <input type="text" class="form-control"
+						      th:field="*{price}" name="price" />
+					</div>
+				</div>
+				<!--/span-->
+			</div>
+			<div class="form-actions right">
+			
+			    <a class="btn red" th:href="${product.id != null ? ('/product/delete/' + product.id) : ('/product/newProduct') }">
+			    Delete</a>
+				<a class="btn default" th:href="@{/product/newProduct}" >Cancel</a>
+				<button id="save_Form" type="submit" class="btn blue">
+				  <i class="fa fa-check"></i> Save
+				</button>
+				
+			</div>
+		</div>
+	</form>
+	<!-- END FORM-->
+		</div>
+	</div>
+	<div  id="statistics_1" class="chart hide"></div>
+</div>
+<!-- END OF FORM -->
+<!-- END EXAMPLE TABLE PORTLET-->
+</div>
+<!-- END CONTENT BODY -->
+</div>
+<!-- END CONTENT -->
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+
+<title>The App</title>
+<!-- HEAD -->
+<!--/*/ <th:block th:include="fragments/headIndex :: headIndex"></th:block> /*/-->
+</head>
+<body
+	class="page-header-fixed page-sidebar-closed-hide-logo page-content-white">
+
+	<!-- HEADER -->
+	<!--/*/ <th:block th:include="fragments/headerIndex :: headerIndex"></th:block> /*/-->
+
+	<!-- BEGIN CONTAINER -->
+	<div class="page-container">
+
+		<!-- SIDEBAR -->
+		<!--/*/ <th:block th:include="fragments/sidebarIndex :: sidebarIndex"></th:block> /*/-->
+
+
+		<!-- MY CONTENT -->
+		<!--/*/ <th:block th:include="fragments/products/listProducts :: listProducts"></th:block> /*/-->
+
+		<!-- QUICK SIDEBAR -->
+		<!--/*/ <th:block th:include="fragments/quickSideBarIndex :: quickSideBarIndex"></th:block> /*/-->
+
+	</div>
+
+	<!-- FOOTER -->
+	<!--/*/ <th:block th:include="fragments/footerIndex :: footerIndex"></th:block> /*/-->
+
+</body>
+</html>
