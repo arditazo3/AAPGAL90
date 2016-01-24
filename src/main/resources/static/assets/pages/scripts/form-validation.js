@@ -1,6 +1,6 @@
 var FormValidation = function () {
 
-	// validation product form
+	// AA / Validation product form before to save
 	var productForm = function() {
 		
 		var formProduct = $('#productForm');
@@ -78,8 +78,10 @@ var FormValidation = function () {
 		});
 		
 	}
-	
-	
+
+//-------------------------------------------------------------------------------------------------------------------------------
+
+
     // basic validation
     var handleValidation1 = function() {
         // for more info visit the official plugin documentation: 

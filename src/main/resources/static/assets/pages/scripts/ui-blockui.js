@@ -1,10 +1,13 @@
 var UIBlockUI = function() {
 
-    var handleSample1 = function() {
-    	
-    	// Form animation save	
+    // AA / The validation of fields before to save
+    var handleSaveNewProduct = function() {
+
     	$('#save_Form').click(function() {
-    		if(document.getElementById('codeProduct').value != '') {
+
+            console.log(Boolean(checkValidationForm()));
+
+    		if( Boolean(checkValidationForm()) ) {
     			App.blockUI({
     				target: '#productFormLoad',
     				animate: true
@@ -15,7 +18,17 @@ var UIBlockUI = function() {
     			}, 2000);
     		}
     	});
-    	
+
+        var checkValidationForm = function () {
+            if (document.getElementById('codeProduct').value != '' && document.getElementById('nameProduct').valueOf != ''
+                && document.getElementById('description').valueOf != '' && document.getElementById('price').valueOf != '' ) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+//-------------------------------------------------------------------------------------------------------------------------------
     	
     	$('#blockui_sample_1_1').click(function() {
             App.blockUI({
@@ -169,7 +182,7 @@ var UIBlockUI = function() {
         //main function to initiate the module
         init: function() {
 
-            handleSample1();
+            handleSaveNewProduct();
             handleSample2();
             handleSample3();
             handleSample4();
