@@ -1,5 +1,7 @@
 package com.aapog.controller;
 
+import com.aapog.broker.IDomainsBroker;
+import com.aapog.entity.Domains;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
@@ -7,40 +9,56 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.aapog.broker.IProductBroker;
 import com.aapog.entity.Product;
 import com.aapog.events.style.SelectedSideBarMenu;
 
+import java.util.List;
+
 @Controller
 public class ProductController {
 
+	private static final String patientMapping = "/patient/";
+	private static final String patient = "patient/";
+
 	private IProductBroker productBorker;
+	private IDomainsBroker domainsBroker;
 
 	@Autowired
 	public void setProductBorker(IProductBroker productBorker) {
 		this.productBorker = productBorker;
 	}
-	
-	@RequestMapping(value = "/productslist", method = RequestMethod.GET)
+
+	@Autowired
+	public void setDomainsBroker(IDomainsBroker domainsBroker) {
+		this.domainsBroker = domainsBroker;
+	}
+
+	@RequestMapping(value = patientMapping + "/patientsList", method = RequestMethod.GET)
 	public String productslist(Model model) {
 		
-		SelectedSideBarMenu eventSelected = new SelectedSideBarMenu("Products", "ViewProducts", null, null, null);
-		model.addAttribute("productPanel", eventSelected);
+		SelectedSideBarMenu eventSelected = new SelectedSideBarMenu("Patients", "ViewPatients", null, null, null);
+		model.addAttribute("patientPanel", eventSelected);
 		
 		model.addAttribute("products", productBorker.findAll() );
-		return "productslist";
+		return patient + "patientsList";
 	}
 	
-	@RequestMapping("product/newProduct")
+	@RequestMapping(value = patientMapping + "newPatient")
+	@Transactional
 	public String newProduct(Model model) {
 		
-		SelectedSideBarMenu eventSelected = new SelectedSideBarMenu("Products", "CreateProduct", null, null, null);
-		model.addAttribute("productPanel", eventSelected);
+		SelectedSideBarMenu eventSelected = new SelectedSideBarMenu("Patients", "CreatePatient", null, null, null);
+		model.addAttribute("patientPanel", eventSelected);
 		
 		model.addAttribute("product", new Product());
-		return "newProduct";
+
+		List<Domains> citiesList = domainsBroker.findAllDomainsType("patient.cities.list");
+
+		model.addAttribute("cities", citiesList);
+
+		return patient + "newPatient";
 	}
 	
 	@RequestMapping(value = "product", method = RequestMethod.POST)
@@ -48,7 +66,7 @@ public class ProductController {
 	public String saveProduct(Product product, Model model) {
 		
 		SelectedSideBarMenu eventSelected = new SelectedSideBarMenu("Products", "ViewProducts", null, null, null);
-		model.addAttribute("productPanel", eventSelected);
+		model.addAttribute("patientPanel", eventSelected);
 		
 		Product productSaved = productBorker.saveProduct(product);
 		return "redirect:/productslist";
@@ -58,7 +76,7 @@ public class ProductController {
 	public String edit(@PathVariable Integer id, Model model) {
 		
 		SelectedSideBarMenu eventSelected = new SelectedSideBarMenu("Products", "EditDeleteProduct", null, null, null);
-		model.addAttribute("productPanel", eventSelected);
+		model.addAttribute("patientPanel", eventSelected);
 		
 		model.addAttribute("product", productBorker.getProductById(new Long(id)) );
 		return "newProduct";
@@ -69,7 +87,7 @@ public class ProductController {
 	public String delete(@PathVariable Long id, Model model) {
 		
 		SelectedSideBarMenu eventSelected = new SelectedSideBarMenu("Products", "EditDeleteProduct", null, null, null);
-		model.addAttribute("productPanel", eventSelected);
+		model.addAttribute("patientPanel", eventSelected);
 		
 		productBorker.deleteProductById(id);
 		return "redirect:/productslist";

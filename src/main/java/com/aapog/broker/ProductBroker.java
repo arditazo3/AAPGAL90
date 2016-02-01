@@ -41,10 +41,10 @@ public class ProductBroker implements IProductBroker {
 	public Product getProductById(Long id) {
 		try {
 			Product product = (Product) em.createQuery(" select p "
-													+ " from Product p "
-													+ " where p.id = :id ")
-													.setParameter("id", id)
-													.getSingleResult();
+					                                 + " from Product p "
+													 + " where p.id = :id ")
+					                                 .setParameter("id", id)
+													 .getSingleResult();
 
 			return product;
 			

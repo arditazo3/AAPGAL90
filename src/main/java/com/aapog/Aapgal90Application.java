@@ -52,7 +52,7 @@ public class Aapgal90Application extends WebMvcConfigurerAdapter {
 					.formLogin()
 					.loginPage("/login")
 					.failureUrl("/login?error")
-					.defaultSuccessUrl("/productslist")
+					.defaultSuccessUrl("/patient/patientsList")
 					.permitAll()
 					.and()
 					.logout()

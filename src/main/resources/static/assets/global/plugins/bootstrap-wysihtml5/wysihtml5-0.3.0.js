@@ -171,7 +171,7 @@ window['rangy'] = (function() {
             if (areHostMethods(testRange, domRangeMethods) && areHostProperties(testRange, domRangeProperties)) {
                 implementsDomRange = true;
             }
-            testRange.detach();
+
         }
 
         var body = isHostObject(document, "body") ? document.body : document.getElementsByTagName("body")[0];

@@ -47,56 +47,56 @@
 						</form> <!-- END RESPONSIVE QUICK SEARCH FORM -->
 					</li>
 					
-					<!-- PRODUCT PANEL -->
+					<!-- PATIENT PANEL -->
 					<li class="nav-item active open"
-						th:class="'nav-item ' + ( (${productPanel} != null) ?
-					 	  (${productPanel.navItem} == 'Products' ? 'active open' : '') : '' )">
-					 	  
+						th:class="'nav-item ' + ( (${patientPanel} != null) ?
+					 	  (${patientPanel.navItem} == 'Patients' ? 'active open' : '') : '' )">
+
 						<a href="javascript:;" class="nav-link nav-toggle"> 
-						<i class="icon-basket"></i> <span class="title">Products</span> 
+						<i class="icon-basket"></i> <span class="title">Patients</span>
 						 <span class="selected"
-							th:class="(${productPanel} != null) ?
-					 		  (${productPanel.navItem} == 'Products' ? 'selected' : '') : '' "></span>
+							th:class="(${patientPanel} != null) ?
+					 		  (${patientPanel.navItem} == 'Patients' ? 'selected' : '') : '' "></span>
 						
 						<span class="arrow open"
-							 th:class=" 'arrow ' + ( (${productPanel} != null) ?
-					 			(${productPanel.navItem} == 'Products' ? 'open' : '') : '' )"></span>
+							 th:class=" 'arrow ' + ( (${patientPanel} != null) ?
+					 			(${patientPanel.navItem} == 'Patients' ? 'open' : '') : '' )"></span>
 					 			
 					    </a>
 						<ul class="sub-menu">
 						
 							<li class="nav-item active open"
-								th:class="'nav-item ' + ( (${productPanel} != null) ?
-					 		       	 (${productPanel.subNavItem} == 'ViewProducts' ? 'active open' : '') : '' )">
-					 		  <a class="nav-link" th:href="@{/productslist}" > 
-					 		  <i class="icon-basket"></i> <span class="title">View Products</span>
+								th:class="'nav-item ' + ( (${patientPanel} != null) ?
+					 		       	 (${patientPanel.subNavItem} == 'ViewPatients' ? 'active open' : '') : '' )">
+					 		  <a class="nav-link" th:href="@{/patient/patientsList}" >
+					 		  <i class="icon-basket"></i> <span class="title">View Patients</span>
 								<span class="selected"
-									  th:class="(${productPanel} != null) ?
-					 				   (${productPanel.subNavItem} == 'ViewProducts' ? 'selected' : '') : '' "></span>		
+									  th:class="(${patientPanel} != null) ?
+					 				   (${patientPanel.subNavItem} == 'ViewPatients' ? 'selected' : '') : '' "></span>
 									
 							</a></li>
 						
 							<li class="nav-item active open"
-								th:class="'nav-item ' + ( (${productPanel} != null) ?
-					 		       	 (${productPanel.subNavItem} == 'CreateProduct' ? 'active open' : '') : '' )">
+								th:class="'nav-item ' + ( (${patientPanel} != null) ?
+					 		       	 (${patientPanel.subNavItem} == 'CreatePatient' ? 'active open' : '') : '' )">
 					 		       	 
-								<a class="nav-link " href="ecommerce_index.html" th:href="@{/product/newProduct}" > 
+								<a class="nav-link " href="ecommerce_index.html" th:href="@{/patient/newPatient}" >
 								<i class="icon-home"></i> 
-								<span class="title">Create Product</span> 
-								<span class="selected" th:class="(${productPanel} != null) ?
-					 				   (${productPanel.subNavItem} == 'CreateProduct' ? 'selected' : '') : '' "></span>
+								<span class="title">Create Patient</span>
+								<span class="selected" th:class="(${patientPanel} != null) ?
+					 				   (${patientPanel.subNavItem} == 'CreatePatient' ? 'selected' : '') : '' "></span>
 					 				   
 							</a></li>
 							
 							<li class="nav-item active open"
-								th:class="'nav-item ' + ( (${productPanel} != null) ?
-					 		       	 (${productPanel.subNavItem} == 'EditDeleteProduct' ? 'active open' : '') : '' )">
+								th:class="'nav-item ' + ( (${patientPanel} != null) ?
+					 		       	 (${patientPanel.subNavItem} == 'EditDeleteProduct' ? 'active open' : '') : '' )">
 					 		       	 
 					 		 <a href="ecommerce_orders_view.html"  class="nav-link "> 
 					 		 <i class="icon-tag"></i> <span class="title">Edit/Delete Product</span>
 					 		 <span class="selected"
-									  th:class="(${productPanel} != null) ?
-					 				   (${productPanel.subNavItem} == 'EditDeleteProduct' ? 'selected' : '') : '' "></span>
+									  th:class="(${patientPanel} != null) ?
+					 				   (${patientPanel.subNavItem} == 'EditDeleteProduct' ? 'selected' : '') : '' "></span>
 					 				   
 							</a></li>
 							
@@ -659,8 +659,8 @@
 								th:class="'nav-item ' + ( (${ecommerce_Dashboard} != null) ?
 					 		       	 (${ecommerce_Dashboard.subNavItem} == 'Test3' ? 'active open' : '') : '' )">
 					 		 <a href="ecommerce_products.html" class="nav-link "> 
-					 		 <i class="icon-graph"></i> <span class="title">Products</span>
-					 		 
+					 		 <i class="icon-graph"></i> <span class="title">Patients</span>
+
 							<span class="selected"
 							  th:class="(${ecommerce_Dashboard} != null) ?
 			 				   (${ecommerce_Dashboard.subNavItem} == 'Test3' ? 'selected' : '') : '' "></span>
