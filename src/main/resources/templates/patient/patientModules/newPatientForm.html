@@ -5,7 +5,7 @@
 
 <body>
 
-	<div th:fragment="newProduct">
+	<div th:fragment="newPatient">
 
 		<!-- BEGIN CONTENT -->
 <div class="page-content-wrapper">
@@ -171,9 +171,9 @@
 			</div>
 			<div class="form-actions right">
 			
-			    <a class="btn red" th:href="${product.id != null ? ('/product/delete/' + product.id) : ('/product/newProduct') }">
+			    <a class="btn red" th:href="${product.id != null ? ('/patient/delete/' + product.id) : ('/patient/newPatient') }">
 			    Delete</a>
-				<a class="btn default" th:href="@{/product/newProduct}" >Cancel</a>
+				<a class="btn default" th:href="@{/patient/newPatient}" >Cancel</a>
 				<button id="save_Form" type="submit" class="btn blue">
 				  <i class="fa fa-check"></i> Save
 				</button>
