@@ -1,8 +1,9 @@
 package com.aapog.controller.patients;
 
 import com.aapog.broker.IDomainsBroker;
-import com.aapog.broker.IProductBroker;
+import com.aapog.broker.IPatientBroker;
 import com.aapog.entity.Domains;
+import com.aapog.entity.Patient;
 import com.aapog.entity.Product;
 import com.aapog.events.style.SelectedSideBarMenu;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,12 +22,12 @@ public class PatientController {
     private static final String patientMapping = "/patient/";
     private static final String patient = "patient/";
 
-    private IProductBroker productBorker;
+    private IPatientBroker patientBroker;
     private IDomainsBroker domainsBroker;
 
     @Autowired
-    public void setProductBorker(IProductBroker productBorker) {
-        this.productBorker = productBorker;
+    public void setPatientBorker(IPatientBroker patientBroker) {
+        this.patientBroker = patientBroker;
     }
 
     @Autowired
@@ -40,7 +41,7 @@ public class PatientController {
         SelectedSideBarMenu eventSelected = new SelectedSideBarMenu("Patients", "ViewPatients", null, null, null);
         model.addAttribute("patientPanel", eventSelected);
 
-        model.addAttribute("products", productBorker.findAll() );
+        model.addAttribute("patients", patientBroker.findAllPatient() );
         return patient + "patientsList";
     }
 
@@ -51,7 +52,7 @@ public class PatientController {
         SelectedSideBarMenu eventSelected = new SelectedSideBarMenu("Patients", "CreatePatient", null, null, null);
         model.addAttribute("patientPanel", eventSelected);
 
-        model.addAttribute("product", new Product());
+        model.addAttribute("patient", new Patient());
 
         List<Domains> citiesList = domainsBroker.findAllDomainsType("patient.cities.list");
 
@@ -60,15 +61,16 @@ public class PatientController {
         return patient + "newPatient";
     }
 
-    @RequestMapping(value = "product", method = RequestMethod.POST)
+    @RequestMapping(value = "patient", method = RequestMethod.POST)
     @Transactional
-    public String saveProduct(Product product, Model model) {
+    public String savePatient(Patient patient, Model model) {
 
-        SelectedSideBarMenu eventSelected = new SelectedSideBarMenu("Products", "ViewProducts", null, null, null);
+        SelectedSideBarMenu eventSelected = new SelectedSideBarMenu("Patients", "ViewPatients", null, null, null);
         model.addAttribute("patientPanel", eventSelected);
 
-        Product productSaved = productBorker.saveProduct(product);
-        return "redirect:/patientsList";
+        patientBroker.savePatient(patient);
+
+        return "redirect:" + patientMapping + "patientsList";
     }
 
     @RequestMapping("patient/edit/{id}")
@@ -77,7 +79,7 @@ public class PatientController {
         SelectedSideBarMenu eventSelected = new SelectedSideBarMenu("Products", "EditDeleteProduct", null, null, null);
         model.addAttribute("patientPanel", eventSelected);
 
-        model.addAttribute("product", productBorker.getProductById(new Long(id)) );
+        model.addAttribute("product", patientBroker.getPatientById(new Integer(id)) );
         return "newPatient";
     }
 
@@ -88,13 +90,13 @@ public class PatientController {
         SelectedSideBarMenu eventSelected = new SelectedSideBarMenu("Products", "EditDeleteProduct", null, null, null);
         model.addAttribute("patientPanel", eventSelected);
 
-        productBorker.deleteProductById(id);
+        patientBroker.deletePatientById(new Integer(id.intValue()) );
         return "redirect:/patientsList";
     }
 
     @RequestMapping("patient/{id}")
     public String showProduct(@PathVariable Long id, Model model) {
-        model.addAttribute("product", productBorker.getProductById(id) );
+        model.addAttribute("product", patientBroker.getPatientById(new Integer(id.intValue()) ) );
         return "productshow";
     }
 

@@ -50,3 +50,5 @@ create TABLE patient (
 );
 
 ALTER TABLE patient ADD PRIMARY KEY (id_patient);
+
+ALTER TABLE patient MODIFY COLUMN id_patient INT AUTO_INCREMENT;
